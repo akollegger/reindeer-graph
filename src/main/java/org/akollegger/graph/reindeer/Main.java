@@ -5,6 +5,13 @@ import org.neo4j.driver.v1.*;
 
 /**
  * Run the Reindeer Graph!
+ *
+ * <ol>
+ *     <li>Create a team of reindeer, pulling a sleigh</li>
+ *     <li>Find the strongest pair of reindeer in the team</li>
+ *     <li>Add Bolt, paired up with Rudolf</li>
+ *     <li>Find the strongest pair, again</li>
+ * </ol>
  */
 public class Main {
 
@@ -65,7 +72,7 @@ public class Main {
         // find strongest pair
         ResultCursor resultCursor = boltSession.run(FIND_STRONGEST_PAIR);
 
-        if (resultCursor.single()) {
+        if (resultCursor.single()) { // expect a single result. this is true _only_ if there is just 1 result
             Node deer1 = resultCursor.value(0).asNode();
             Node deer2 = resultCursor.value(1).asNode();
             System.out.printf("Strongest pair: %s + %s = %d\n",
@@ -95,12 +102,7 @@ public class Main {
 
         try {
             driver.close();
-        } catch(Exception e) {}
-    }
-
-    private static void initalizeGraph(Session boltSession) {
-
-
+        } catch(Exception e) { /** aw, darn */ }
     }
 
 }
