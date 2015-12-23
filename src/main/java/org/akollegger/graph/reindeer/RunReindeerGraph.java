@@ -13,7 +13,7 @@ import org.neo4j.driver.v1.*;
  *     <li>Find the strongest pair, again</li>
  * </ol>
  */
-public class Main {
+public class RunReindeerGraph {
 
     final static String CREATE_REINDEER_GRAPH =
         "CREATE (dasher:Reindeer {name:\"Dasher\", strength: 8})\n" +
