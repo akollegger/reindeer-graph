@@ -63,7 +63,7 @@ public class Main {
         // find strongest pair
         ResultCursor resultCursor = boltSession.run(FIND_STRONGEST_PAIR);
 
-        if (resultCursor.next()) {
+        if (resultCursor.next()) { // pull the next (first) result. true if available
             System.out.printf("Strongest reindeer pair: %s %s\n",
                     resultCursor.value(0).asNode().value("name").asString(),
                     resultCursor.value(1).asNode().value("name").asString());
@@ -77,13 +77,17 @@ public class Main {
         // find the strongest pair, again
         resultCursor = boltSession.run(FIND_STRONGEST_PAIR);
 
-        if (resultCursor.next()) {
+        if (resultCursor.next()) { // pull the next (first) result. true if available
             System.out.printf("Strongest reindeer pair: %s %s\n",
                     resultCursor.value(0).asNode().value("name").asString(),
                     resultCursor.value(1).asNode().value("name").asString());
         }
 
         boltSession.close();
+
+        try {
+            driver.close();
+        } catch(Exception e) {}
     }
 
     private static void initalizeGraph(Session boltSession) {
