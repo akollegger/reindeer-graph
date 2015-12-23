@@ -1,0 +1,7 @@
+dependency-reduced-pom.xml
+target
+*.iws
+*.ipr
+*.iml
+.idea
+.DS_Store
